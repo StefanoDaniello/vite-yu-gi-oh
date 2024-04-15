@@ -22,14 +22,19 @@ import MainComponents from './components/MainComponent.vue';
     },
     methods: {
     getCards() {
+      let prova =[]
       axios.get(this.store.apiUrl).then( (res)=>{
-      this.cards = res.data.data
+        if(res.data.data.length > 0){
+        prova = [...res.data.data]
+        this.cards.push(prova)
+        }
       }
      )} 
     },
 
   created() {
    this.getCards()
+   console.log(this.cards)
   }
 }
 </script>
