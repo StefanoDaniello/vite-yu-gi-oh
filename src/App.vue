@@ -16,20 +16,22 @@ import MainComponents from './components/MainComponent.vue';
     },
     data() {
       return {
-        store
+        store,
+        cards: [],
       }
     },
     methods: {
-     getCards() {
-       axios.get(this.store.apiUrl + this.store.endPoint.names).then((res)=>
-       this.store.names = res.data.data;
-      )} 
-
+    getCards() {
+      axios.get(this.store.apiUrl).then( (res)=>{
+      this.cards = res.data.data
+      }
+     )} 
     },
-    created(){
-      console.log( getCards())
-    }
+
+  created() {
+   this.getCards()
   }
+}
 </script>
 
 <style lang="scss" scoped>

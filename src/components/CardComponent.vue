@@ -3,14 +3,7 @@
         <img :src="image" class="card-img-top" :alt="title" >
         <div class="card-body">
             <h5 class="card-title">{{ title }}</h5>
-            <p class="card-text">
-               <span>{{ status }}</span>
-               <br>
-               <span> {{ text }}</span>
-               <br>
-               <span>{{ subtext }}</span>
-            </p>
-          
+            <p class="card-text">{{ type }}</p>
         </div>
     </div>
 </template>
@@ -18,6 +11,7 @@
 <script>
     export default {
         name:"CardComponent",
+        props: ['id', 'title', 'image', 'type'],
     }
 </script>
 
