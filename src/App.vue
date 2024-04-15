@@ -28,7 +28,7 @@ import MainComponents from './components/MainComponent.vue';
     methods: {
     getCards() {
       this.store.loading = true
-      axios.get(this.store.apiUrl).then( (res)=>{
+      axios.get(this.store.apiUrl ).then( (res)=>{
         if(res.data.data.length > 0){
         this.store.cards=res.data.data
         }

@@ -1,5 +1,6 @@
 <template>
     <main class="bg-warning">
+        <SelectComponents />
         <div class="container bg-light ">
             <div class="bg-black">
                 <span class="text-white px-2"> Found {{ store.cards.length }} cards</span>
@@ -21,13 +22,15 @@
 <script>
 import { store } from '../store.js';
 import ApiLoader from './ApiLoader.vue';
+import SelectComponents from './SelectComponents.vue';
 import CardComponent from './CardComponent.vue';
 
 export default {
     name: 'MainComponent',
     components:{
         CardComponent,
-        ApiLoader
+        ApiLoader,
+        SelectComponents
     },
     data(){
         return{
