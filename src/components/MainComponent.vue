@@ -1,8 +1,11 @@
 <template>
     <main class="bg-warning">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6 col lg-3" v-for="character in cards" :key="apiUrl">
+        <div class="container bg-light ">
+            <div class="bg-black">
+                <span class="text-white px-2"> Found {{ store.cards.length }} cards</span>
+            </div>
+            <div class="row gy-4" v-if="!store.loading">
+                <div class="col-12 col-md-6 col-lg-3" v-for="character in store.cards" :key="apiUrl">
                     <CardComponent   
                     :id="character.id" 
                     :title="character.name"
@@ -10,25 +13,27 @@
                     :type="character.type" />
                 </div>
             </div>
+            <ApiLoader v-else />
         </div>
     </main>
 </template>
 
 <script>
 import { store } from '../store.js';
+import ApiLoader from './ApiLoader.vue';
 import CardComponent from './CardComponent.vue';
 
 export default {
     name: 'MainComponent',
-    props:['cards'],
     components:{
-        CardComponent
+        CardComponent,
+        ApiLoader
     },
     data(){
         return{
             store
         }
-    }, 
+    },
 }
 </script>
 
