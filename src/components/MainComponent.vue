@@ -1,8 +1,8 @@
 <template>
     <main class="bg-warning">
         <SelectComponents />
-        <div class="container bg-light ">
-            <div class="bg-black">
+        <div class="container bg-light p-3 st-radius">
+            <div class="bg-black st-radius">
                 <span class="text-white px-2"> Found {{ store.cards.length }} cards</span>
             </div>
             <div class="row gy-4" v-if="!store.loading">
@@ -41,5 +41,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+    .st-radius{
+        border-radius: 10px;
+        padding: 10px;
+    }
 </style>
