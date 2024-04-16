@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent />
+  <HeaderComponent @select-type="setParams"/>
   <MainComponents />
 </template>
 
@@ -8,11 +8,6 @@ import { store } from './store.js';
 import axios from 'axios';
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponents from './components/MainComponent.vue';
-
-
-
-
-
 
   export default {
     name: 'App',
@@ -25,15 +20,36 @@ import MainComponents from './components/MainComponent.vue';
         store
       }
     },
+    // watch: {
+    //     'store.statusFiler'(newVal, oldVal){
+    //       if(newVal !== oldVal){
+    //         this.setParams()
+    //       }
+    //     }
+    // },
     methods: {
+      setParams(){
+        const options={}
+        if(this.store.statusFilter){
+          options.params={
+            status:this.store.statusFilter,
+          }
+        }
+      },
     getCards() {
       this.store.loading = true
-      axios.get(this.store.apiUrl ).then( (res)=>{
-        if(res.data.data.length > 0){
-        this.store.cards=res.data.data
-        }
+      axios.get(this.store.apiUrl + this.store.endPoint.card, this.store.options).then( (res)=>{
+        this.store.cards=res.data.data.map((card)=>{
+          return {
+            id:card.id,
+            title:card.name,
+            type:card.type,
+            archetype:card.archetype,
+            image:card.card_images[0].image_url
+          }
+        });
       }).catch((error)=>{
-        console.log(error)
+        this.store.error.message = error.message
       }).finally(()=>{
         this.store.loading = false
       })
@@ -41,7 +57,6 @@ import MainComponents from './components/MainComponent.vue';
   },
   created() {
    this.getCards()
-   console.log(this.cards)
   }
 }
 </script>

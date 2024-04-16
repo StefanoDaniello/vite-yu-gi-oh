@@ -1,17 +1,18 @@
 <template>
     <main class="bg-warning">
-        <SelectComponents />
         <div class="container bg-light p-3 st-radius">
             <div class="bg-black st-radius">
                 <span class="text-white px-2"> Found {{ store.cards.length }} cards</span>
             </div>
             <div class="row gy-4" v-if="!store.loading">
-                <div class="col-12 col-md-6 col-lg-3" v-for="character in store.cards" :key="apiUrl">
+                <div class="col-12 col-md-6 col-lg-3" v-for="card  in store.cards" :key="card.id">
                     <CardComponent   
-                    :id="character.id" 
-                    :title="character.name"
-                    :image="character.card_images[0].image_url"
-                    :type="character.type" />
+                    :id="card.id" 
+                    :title="card.title"
+                    :type="card.type"
+                    :archetype="card.archetype"
+                    :image="card.image"
+                    />
                 </div>
             </div>
             <ApiLoader v-else />
@@ -22,7 +23,6 @@
 <script>
 import { store } from '../store.js';
 import ApiLoader from './ApiLoader.vue';
-import SelectComponents from './SelectComponents.vue';
 import CardComponent from './CardComponent.vue';
 
 export default {
@@ -30,7 +30,6 @@ export default {
     components:{
         CardComponent,
         ApiLoader,
-        SelectComponents
     },
     data(){
         return{
