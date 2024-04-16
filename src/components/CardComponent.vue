@@ -19,7 +19,7 @@
 <style lang="scss" scoped>
     .card{
         background-color: #D48F38;
-        height: 0px;
+        height: 600px;
         margin: 10px 0px;
     }
 </style>
