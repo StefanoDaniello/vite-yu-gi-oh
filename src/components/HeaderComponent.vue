@@ -7,7 +7,8 @@
         <div class="img-select-container">
         <select class="form-select" aria-label="Default select example" @change="$emit('select-type')" v-model='store.statusFilter'>
             <option selected value="">All</option>
-            <option value="type=FusionMonster"></option>
+            <option :value="archetype.archetype_name" v-for="archetype in store.archetypes" :key="archetype">
+                {{ archetype.archetype_name }}</option>
         </select>
     </div>
     </div>
